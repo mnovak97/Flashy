@@ -61,7 +61,36 @@ struct ImageService {
         }
     }
     
-    func fetchTotalImageSizeForUser(userID: String, completion:@escaping (Int) -> Void) {
-        
+    func fetchUserImageUrls(userID: String, completion:@escaping([String]) -> Void) {
+        var pictureUrls = [String]()
+        let db = Firestore.firestore()
+        let picturesRef = db.collection("pictures")
+        let query = picturesRef.whereField("userID", isEqualTo: userID)
+        query.getDocuments { snapshot, error in
+            if let error = error {
+                print("Error getting documents: \(error.localizedDescription)")
+                return
+            }
+            for document in snapshot!.documents {
+                let data = document.data()
+                pictureUrls.append(data["pictureUrl"] as? String ?? "")
+            }
+            completion(pictureUrls)
+        }
+    }
+    
+    func fetchImageSize(imageUrl: String, completion:@escaping(Int) -> Void) {
+        let storageRef = Storage.storage().reference(forURL: imageUrl)
+        storageRef.getMetadata { metadata, error in
+            if let error = error {
+                print("Error getting metadata: \(error.localizedDescription)")
+                return
+            }
+            if let size = metadata?.size {
+                completion(Int(size))
+            } else {
+                print("Error getting file size")
+            }
+        }
     }
 }

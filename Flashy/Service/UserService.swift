@@ -45,24 +45,5 @@ struct UserService {
             }
     }
     
-    func updateUserConsumption(uid: String, pictureUrl: String) {
-        let db = Firestore.firestore()
-        let storage = FirebaseStorage.Storage.storage().reference(forURL: pictureUrl)
-        storage.getMetadata { data, err in
-            if let size = data?.size {
-                let userRef = db.collection("users")
-                    .whereField("uid", isEqualTo: uid)
-                    .getDocuments { result, err in
-                        if err == nil {
-                            for document in result?.documents {
-                                var current = document.reference.value(forKey: "consumption")
-                                var new = current + size
-                                document.reference.setValue(new, forKey: "consumption")
-                            }
-                        }
-                    }
-            }
-        }
-    }
     
 }

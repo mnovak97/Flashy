@@ -11,13 +11,11 @@ import Firebase
 import FirebaseAuth
 
 class ImageUploadViewModel: ObservableObject {
-    var userSerive = UserService()
     
     func uploadPicture(_ image: UIImage,description : String, author: String, hashtags: String) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
         ImageUploader.uploadImage(image: image) { pictureUrl in
-            
             let pictureData = [ "date" : Timestamp(date: Date()),
                             "description" : description,
                             "author" : author,
@@ -30,7 +28,6 @@ class ImageUploadViewModel: ObservableObject {
             newPictureRef.setData(pictureData) {_ in
                 print("Data set")
             }
-            userSerive.updateUserConsumption(uid: uid, pictureUrl: pictureUrl)
             
         }
     }

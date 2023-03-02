@@ -22,8 +22,12 @@ class ProfileViewModel: ObservableObject {
     
     func fetchTotalUsage() {
         if let userID = user.id {
-            self.imageService.fetchTotalImageSizeForUser(userID: userID) { usage in
-                self.totalUsage = usage
+            self.imageService.fetchUserImageUrls(userID: userID) { urls in
+                for url in urls {
+                    self.imageService.fetchImageSize(imageUrl: url) { size in
+                        self.totalUsage += size / 1000
+                    }
+                }
             }
         }
     }
@@ -31,11 +35,11 @@ class ProfileViewModel: ObservableObject {
     func getMaxConsumption() {
         if let package = user.packageType.components(separatedBy: " ").first {
             if package == "GOLD" {
-                self.packageMaxConsumption = 500000
+                self.packageMaxConsumption = 50000
             } else if package == "PRO" {
-                self.packageMaxConsumption = 250000
+                self.packageMaxConsumption = 25000
             } else if package == "BASIC" {
-                self.packageMaxConsumption = 100000
+                self.packageMaxConsumption = 10000
             }
         }
     }
