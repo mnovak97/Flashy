@@ -13,8 +13,7 @@ class ProfileViewModel: ObservableObject {
     @Published var packageMaxConsumption = 0
     let imageService = ImageService()
     let user: User
-    
-    init(user: User) {
+    init(user:User) {
         self.user = user
         self.fetchTotalUsage()
         self.getMaxConsumption()
@@ -43,4 +42,6 @@ class ProfileViewModel: ObservableObject {
             }
         }
     }
+    
+    
 }

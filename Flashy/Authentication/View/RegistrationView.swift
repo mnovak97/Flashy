@@ -33,19 +33,19 @@ struct RegistrationView: View {
                 
                 Menu {
                     Button {
-                        optionSelected = "GOLD 14.99$ 500MB"
+                        optionSelected = "GOLD 14.99$ 50MB"
                     } label: {
-                        Text("GOLD 14.99$ 15GB")
+                        Text("GOLD 14.99$ 50MB")
                     }
                     Button {
-                        optionSelected = "PRO 9.99$ 250MB"
+                        optionSelected = "PRO 9.99$ 25MB"
                     } label: {
-                        Text("PRO 9.99$ 10GB")
+                        Text("PRO 9.99$ 25MB")
                     }
                     Button {
-                        optionSelected = "BASIC 4.99$ 100MB"
+                        optionSelected = "BASIC 4.99$ 10MB"
                     } label: {
-                        Text("BASIC 4.99$ 500MB")
+                        Text("BASIC 4.99$ 10MB")
                     }
                 } label: {
                     Text(optionSelected)
