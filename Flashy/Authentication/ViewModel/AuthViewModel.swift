@@ -21,7 +21,14 @@ class AuthViewModel : ObservableObject {
     }
     
     func loginWithEmailAndPassword(email: String, password: String) {
-        
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if let error = error {
+                print("Unable to login \(error.localizedDescription)")
+            }
+            guard let user = result?.user else {return}
+            self.userSession = user
+            self.fetchCurrentUser()
+        }
     }
     
     func signInWithGoogle() {
@@ -30,7 +37,7 @@ class AuthViewModel : ObservableObject {
             GIDSignIn.sharedInstance.restorePreviousSignIn { [unowned self] user, error in
                 authenticateUser(for: user, with: error)
             }
-          } else {
+        } else {
             // 2
             guard let clientID = FirebaseApp.app()?.options.clientID else { return }
             
@@ -42,11 +49,11 @@ class AuthViewModel : ObservableObject {
             guard let rootViewController = windowScene.windows.first?.rootViewController else { return }
             
             // 5
-              GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController) { [unowned self] user, error in
-                    authenticateUser(for: user, with: error)
-                  }
-              
-          }
+            GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController) { [unowned self] user, error in
+                authenticateUser(for: user, with: error)
+            }
+            
+        }
     }
     
     func signUp(email: String,username: String, password: String, package: String) {
@@ -73,6 +80,7 @@ class AuthViewModel : ObservableObject {
                 .setData(data) {_ in
                     print("Data set")
                 }
+            self.fetchCurrentUser()
         }
     }
     
@@ -102,6 +110,7 @@ class AuthViewModel : ObservableObject {
         
         try? Auth.auth().signOut()
         userSession = nil
+        currentUser = nil
         
     }
     

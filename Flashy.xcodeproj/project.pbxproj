@@ -48,6 +48,7 @@
 		557E0F84299E833200BD1FE2 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557E0F83299E833200BD1FE2 /* ProgressBarView.swift */; };
 		5589071229B8E3BB00CC7D18 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589071129B8E3BB00CC7D18 /* ImageSaver.swift */; };
 		5589071829BA0B5800CC7D18 /* ImageDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589071729BA0B5800CC7D18 /* ImageDetailViewModel.swift */; };
+		5589071A29BE3D2000CC7D18 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589071929BE3D2000CC7D18 /* ImageType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		557E0F83299E833200BD1FE2 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		5589071129B8E3BB00CC7D18 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		5589071729BA0B5800CC7D18 /* ImageDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewModel.swift; sourceTree = "<group>"; };
+		5589071929BE3D2000CC7D18 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 				556AD0302955B9FD00FAB74E /* Picture.swift */,
 				556AD0322955BABF00FAB74E /* User.swift */,
 				5500A00329B28760001AC2B3 /* ProfileEdit.swift */,
+				5589071929BE3D2000CC7D18 /* ImageType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				557E0F82299E800E00BD1FE2 /* CustomShape.swift in Sources */,
 				556ACFF429530F0E00FAB74E /* ContentView.swift in Sources */,
 				556AD02E2954FCAD00FAB74E /* SearchBar.swift in Sources */,
+				5589071A29BE3D2000CC7D18 /* ImageType.swift in Sources */,
 				557E0F7E299E6A4900BD1FE2 /* ProfileViewModel.swift in Sources */,
 				556AD00A2953316C00FAB74E /* RegistrationView.swift in Sources */,
 				556AD01A295480DE00FAB74E /* AuthViewModel.swift in Sources */,

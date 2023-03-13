@@ -48,7 +48,7 @@ struct LoginScreenView: View {
                 Spacer()
                 
                 Button {
-                    print("Signing in")
+                    authViewModel.loginWithEmailAndPassword(email: email, password: password)
                 } label: {
                     Text("Sign in")
                         .font(.headline)
@@ -65,14 +65,14 @@ struct LoginScreenView: View {
                 Button {
                     print("Signing in with github")
                 } label: {
-                    CustomSignInButton(imageName: "gitLogo", placeholder: "Sign in with GitHub")
+                    CustomSignInButton(imageType: ImageType.systemImage, imageName: "apple.logo", placeholder: "Sign in with Apple ID")
                         .padding(.horizontal, 20)
                 }
                 
                 Button {
                     authViewModel.signInWithGoogle()
                 } label: {
-                    CustomSignInButton(imageName: "googleLogo", placeholder: "Sign in with Google")
+                    CustomSignInButton(imageType: ImageType.assetImage, imageName: "googleLogo", placeholder: "Sign in with Google")
                         .padding(.horizontal, 20)
                 }
                 Spacer()

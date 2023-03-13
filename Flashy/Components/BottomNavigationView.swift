@@ -13,14 +13,19 @@ struct BottomNavigationView: View {
         NavigationView {
             VStack {
                 HStack {
+                    Button {
+                        authViewModel.signOut()
+                    } label: {
+                        Image(systemName: "rectangle.portrait.and.arrow.right")
+                            .font(.title)
+                    }
+                    .padding(.leading)
+
                     Spacer()
-                    
                     Text("Flashy")
                         .fontWeight(.bold)
                         .font(.custom("Futura-MediumItalic", fixedSize: 25))
-                        .padding(.leading, 50)
                     Spacer()
-                    
                     NavigationLink {
                         ImageUploadView()
                     } label: {
@@ -57,6 +62,6 @@ struct BottomNavigationView: View {
 
 struct BottomNavigationView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomNavigationView()
+        BottomNavigationView().environmentObject(AuthViewModel())
     }
 }

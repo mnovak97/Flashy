@@ -7,12 +7,14 @@
 
 import Foundation
 import Firebase
+import SwiftUI
 
 class ProfileViewModel: ObservableObject {
     @Published var totalUsage = 0
     @Published var packageMaxConsumption = 0
+    @EnvironmentObject var authVM : AuthViewModel
     let imageService = ImageService()
-    let user: User
+    @Published var user: User
     init(user:User) {
         self.user = user
         self.fetchTotalUsage()
@@ -20,10 +22,12 @@ class ProfileViewModel: ObservableObject {
     }
     
     func fetchTotalUsage() {
+        totalUsage = 0
         if let userID = user.id {
             self.imageService.fetchUserImageUrls(userID: userID) { urls in
                 for url in urls {
                     self.imageService.fetchImageSize(imageUrl: url) { size in
+                        print(size)
                         self.totalUsage += size / 1000
                     }
                 }

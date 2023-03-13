@@ -43,7 +43,9 @@ struct ProfileView: View {
                     
                     ProgressBarView(width: 150,height: 20,percent: CGFloat(viewModel.totalUsage),packageSpace: CGFloat(viewModel.packageMaxConsumption),color1: Color(.systemBlue),color2: Color(.blue))
                         .animation(.spring())
-                    Text("\(viewModel.totalUsage / 1000)/\(viewModel.packageMaxConsumption / 1000) MB")
+                    let totalUsage = Double(viewModel.totalUsage / 1000)
+                    let totalUsageString = String(format: "%.1f", totalUsage)
+                    Text("\(totalUsageString)/\(viewModel.packageMaxConsumption / 1000) MB")
                 }
                 
                 .padding(.top,20)
@@ -81,6 +83,9 @@ struct ProfileView: View {
             .background(Color(.systemGray5))
             .clipShape(CustomShape(corners: [.topLeft,.topRight,.bottomLeft,.bottomRight]))
             .padding()
+        }
+        .onAppear{
+            self.viewModel.fetchTotalUsage()
         }
     }
 }
