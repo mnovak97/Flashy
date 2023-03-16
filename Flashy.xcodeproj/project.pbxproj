@@ -49,6 +49,7 @@
 		5589071229B8E3BB00CC7D18 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589071129B8E3BB00CC7D18 /* ImageSaver.swift */; };
 		5589071829BA0B5800CC7D18 /* ImageDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589071729BA0B5800CC7D18 /* ImageDetailViewModel.swift */; };
 		5589071A29BE3D2000CC7D18 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589071929BE3D2000CC7D18 /* ImageType.swift */; };
+		55D1C76F29C350FF009BBDE8 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C76E29C350FF009BBDE8 /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		5589071129B8E3BB00CC7D18 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
 		5589071729BA0B5800CC7D18 /* ImageDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewModel.swift; sourceTree = "<group>"; };
 		5589071929BE3D2000CC7D18 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
+		55D1C76E29C350FF009BBDE8 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -349,6 +351,7 @@
 		557E0F77299AE5BF00BD1FE2 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				55D1C76E29C350FF009BBDE8 /* SearchViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				556AD02C2954F63C00FAB74E /* ThumbnailView.swift in Sources */,
 				556AD0312955B9FD00FAB74E /* Picture.swift in Sources */,
 				557E0F82299E800E00BD1FE2 /* CustomShape.swift in Sources */,
+				55D1C76F29C350FF009BBDE8 /* SearchViewModel.swift in Sources */,
 				556ACFF429530F0E00FAB74E /* ContentView.swift in Sources */,
 				556AD02E2954FCAD00FAB74E /* SearchBar.swift in Sources */,
 				5589071A29BE3D2000CC7D18 /* ImageType.swift in Sources */,

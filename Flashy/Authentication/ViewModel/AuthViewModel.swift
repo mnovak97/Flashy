@@ -31,6 +31,36 @@ class AuthViewModel : ObservableObject {
         }
     }
     
+    func signInAnonymous() {
+        Auth.auth().signInAnonymously { authResult, error in
+            if let error = error {
+                print("Unable to sign in anonymously \(error.localizedDescription)")
+            }
+            guard let user = authResult?.user else { return }
+            self.userSession = user
+        }
+    }
+    
+    func signInWithGitHub() {
+        let provider = OAuthProvider(providerID: "github.com")
+        provider.getCredentialWith(nil) { credential, error in
+            if error != nil {
+                print("Error getting credentials")
+                return
+            }
+
+            if let credential = credential {
+                Auth.auth().signIn(with: credential) { authResult, error in
+                    if error != nil {
+                        print("Error signing in")
+                        return
+                    }
+                    
+                }
+            }
+        }
+    }
+    
     func signInWithGoogle() {
         
         if GIDSignIn.sharedInstance.hasPreviousSignIn() {
@@ -52,7 +82,25 @@ class AuthViewModel : ObservableObject {
             GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController) { [unowned self] user, error in
                 authenticateUser(for: user, with: error)
             }
+        }
+    }
+    func createUser(uid:String,email:String) {
+        if let atIndex = email.firstIndex(of: "@") {
+            let username = email.prefix(upTo: atIndex)
+            let data = ["email": email,
+                        "username": username,
+                        "password":"",
+                        "packageType": "BASIC 4.99$ 10MB",
+                        "isAdmin":false,
+                        "consumption":0,
+                        "uid": uid] as [String : Any]
             
+            Firestore.firestore()
+                .collection("users")
+                .document(uid)
+                .setData(data) {_ in
+                    print("Data set")
+                }
         }
     }
     
@@ -98,9 +146,21 @@ class AuthViewModel : ObservableObject {
       // 3
       Auth.auth().signIn(with: credential) { [unowned self] (authDataResult, error) in
         if let error = error {
-          print(error.localizedDescription)
+            print(error.localizedDescription)
         } else {
             self.userSession = authDataResult?.user
+            let uid = authDataResult?.user.uid
+            let email = authDataResult?.user.email
+            let docRef = Firestore.firestore().collection("users").document(uid!)
+
+            docRef.getDocument { (document, error) in
+                if let document = document, document.exists {
+                    self.fetchCurrentUser()
+                } else {
+                    self.createUser(uid: uid!,email: email!)
+                    self.fetchCurrentUser()
+                }
+            }
         }
       }
     }

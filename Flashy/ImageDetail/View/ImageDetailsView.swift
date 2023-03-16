@@ -14,6 +14,9 @@ struct ImageDetailsView: View {
     @StateObject private var viewModel = ImageDetailViewModel()
     @State private var selectedFilterName: String?
     @State private var saveAlertShown = false
+    @State private var hashtags = ""
+    @State private var description = ""
+    @EnvironmentObject var authView: AuthViewModel
     var body: some View {
         ZStack {
             VStack(alignment:.leading) {
@@ -22,6 +25,15 @@ struct ImageDetailsView: View {
                         .font(.title)
                         .bold()
                         .padding(.leading,10)
+                    Spacer()
+                    if authView.userSession?.uid == picture.userID {
+                        Button {
+                            viewModel.update(pictureURL: picture.imageUrl, description: description, hashtags: hashtags)
+                        } label: {
+                            Text("Update")
+                        }
+                        .padding(.trailing,10)
+                    }
                 }
                 if let image = viewModel.image {
                     image
@@ -38,16 +50,57 @@ struct ImageDetailsView: View {
                     }
                     .frame(height:250)
                 }
-                HStack {
-                    Text("\(picture.author) ")
-                        .bold()
-                        .font(.title3) +
-                    Text("\(picture.description)")
-                }
-                .padding(.leading, 10)
-                Text(picture.hashtags)
-                    .padding(.top, 10)
+                if authView.userSession?.uid == picture.userID {
+                    HStack {
+                        Text("Description")
+                            .fontWeight(.bold)
+                            .font(.custom("Futura-MediumItalic", fixedSize: 16))
+                        Spacer()
+                    }
                     .padding(.leading,10)
+                    HStack {
+                        TextField("Enter description", text: $description)
+                                    .textFieldStyle(.roundedBorder)
+                                    .padding(.bottom)
+                    }
+                    .padding(.leading)
+                    .padding(.trailing)
+                } else {
+                    HStack {
+                        Text("\(picture.author) ")
+                            .bold()
+                            .font(.title3) +
+                            Text("\(picture.description)")
+                    }
+                    .padding(.leading, 10)
+                }
+                if authView.userSession?.uid == picture.userID {
+                    HStack {
+                        Text("Hashtags")
+                            .fontWeight(.bold)
+                            .font(.custom("Futura-MediumItalic", fixedSize: 16))
+                        Spacer()
+                    }
+                    .padding(.leading,10)
+                    HStack {
+                        Text("#")
+                            .padding(5)
+                            .fontWeight(.bold)
+                            .font(.custom("Futura-MediumItalic", fixedSize: 16))
+                            .border(.black)
+                            .foregroundColor(.gray)
+                            .cornerRadius(3)
+                        
+                        TextField("Enter hashtags", text: $hashtags)
+                                    .textFieldStyle(.roundedBorder)
+                    }
+                    .padding(.leading)
+                    .padding(.trailing)
+                } else {
+                    Text(picture.hashtags)
+                        .padding(.top, 10)
+                        .padding(.leading,10)
+                }
                 
                 HStack {
                     Text("Date:")
@@ -93,6 +146,12 @@ struct ImageDetailsView: View {
                 }
             }
         }
+        .onAppear{
+            if authView.userSession?.uid == picture.userID {
+                description = picture.description
+                hashtags = picture.hashtags
+            }
+        }
     }
     func save() {
         viewModel.saveToPhotoAlbum()
@@ -106,6 +165,6 @@ struct ImageDetailsView: View {
 
 struct ImageDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageDetailsView(picture: Picture(documentID: "A1s0u6SfttWfrNDdTjti", date: Date(), descritpion: "descasodnaosdnaosdnaosdnaosdnoad naodnaosdnaosdnaodn", author: "author", hashtags: "#dvije#vodopad#ludooo", imageUrl: "https://firebasestorage.googleapis.com:443/v0/b/flashy-d36a3.appspot.com/o/pictures%2FE1A217C3-0F2B-4E07-9BA5-2D4130E48473?alt=media&token=72e1c189-f8ff-4cba-9739-476dff208d01", user: "Ww2HO2eypQcDZHElwo9NI3GPNc73"))
+        ImageDetailsView(picture: Picture(documentID: "A1s0u6SfttWfrNDdTjti", date: Date(), descritpion: "descasodnaosdnaosdnaosdnaosdnoad naodnaosdnaosdnaodn", author: "author", hashtags: "#dvije#vodopad#ludooo", imageUrl: "https://firebasestorage.googleapis.com:443/v0/b/flashy-d36a3.appspot.com/o/pictures%2FE1A217C3-0F2B-4E07-9BA5-2D4130E48473?alt=media&token=72e1c189-f8ff-4cba-9739-476dff208d01", user: "5o8UbGKOwLQmScoS2vm1JSYuLlp1")).environmentObject(AuthViewModel())
     }
 }

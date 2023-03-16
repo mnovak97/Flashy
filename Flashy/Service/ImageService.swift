@@ -11,6 +11,29 @@ import FirebaseStorage
 
 struct ImageService {
     let userService = UserService()
+    
+    func updatePicture(pictureUrl:String,description:String,hashtags:String) {
+        let db = Firestore.firestore()
+        let query = db.collection("pictures").whereField("pictureUrl", isEqualTo: pictureUrl).limit(to: 1)
+
+        query.getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error.localizedDescription)")
+            } else if let document = querySnapshot?.documents.first {
+                let docRef = db.collection("pictures").document(document.documentID)
+                docRef.updateData(["description": description, "hashtags": hashtags]) { (error) in
+                    if let error = error {
+                        print("Error updating document: \(error.localizedDescription)")
+                    } else {
+                        print("Document updated successfully.")
+                    }
+                }
+            } else {
+                print("No matching documents found.")
+            }
+        }
+    }
+    
     func fetchPictures(completion:@escaping([Picture]) -> Void) {
         var pictures = [Picture]()
         Firestore.firestore().collection("pictures")

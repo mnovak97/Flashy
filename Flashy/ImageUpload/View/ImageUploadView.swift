@@ -33,14 +33,14 @@ struct ImageUploadView: View {
                             .scaledToFit()
                             .cornerRadius(3)
                             .shadow(radius: 7)
-                            .frame(width: 350, height: 250)
+                            .frame(height: 250)
                     } else {
                         Image(systemName: "photo")
                             .resizable()
                             .scaledToFit()
                             .cornerRadius(3)
                             .shadow(radius: 7)
-                            .frame(width: 350, height: 250)
+                            .frame(height: 250)
                     }
                 }
                 .padding(.bottom)
@@ -54,9 +54,9 @@ struct ImageUploadView: View {
                     .font(.custom("Futura-MediumItalic", fixedSize: 16))
                 Spacer()
             }
-            .padding()
+            .padding(.leading)
             HStack {
-                TextField("Enter description", text: $description, axis: .vertical)
+                TextField("Enter description", text: $description)
                             .textFieldStyle(.roundedBorder)
                             .padding(.bottom)
             }
@@ -64,8 +64,6 @@ struct ImageUploadView: View {
             .padding(.trailing)
             
             //Hashtags section
-            Divider()
-                .background(Color.black)
             
             HStack {
                 Text("Hashtags")
@@ -73,7 +71,7 @@ struct ImageUploadView: View {
                     .font(.custom("Futura-MediumItalic", fixedSize: 16))
                 Spacer()
             }
-            .padding()
+            .padding(.leading)
             HStack {
                 Text("#")
                     .padding(5)
@@ -83,7 +81,7 @@ struct ImageUploadView: View {
                     .foregroundColor(.gray)
                     .cornerRadius(3)
                 
-                TextField("Enter hashtags", text: $hashtags, axis: .vertical)
+                TextField("Enter hashtags", text: $hashtags)
                             .textFieldStyle(.roundedBorder)
             }
             .padding(.leading)

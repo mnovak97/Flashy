@@ -8,14 +8,24 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State private var searchText = ""
+    @ObservedObject var searchVM = SearchViewModel()
     var body: some View {
         VStack {
-            SearchBar(text: $searchText)
+            SearchBar(text: $searchVM.searchText)
                 .padding()
+            HStack {
+                
+            }
             ScrollView {
                 LazyVStack {
-                    
+                    ForEach(searchVM.searchablePictures) { picture in
+                        NavigationLink {
+                            ImageDetailsView(picture: picture)
+                        } label: {
+                            ThumbnailView(picture: picture)
+                                .foregroundColor(.black)
+                        }
+                    }
                 }
             }
         }

@@ -13,6 +13,7 @@ class ImageDetailViewModel : ObservableObject {
     var loadedImage: UIImage?
     var selectedFilterName: String?
     var filteredCgImage: CGImage?
+    let imageService = ImageService()
     let filters = [
             "CISepiaTone",
             "CIPhotoEffectFade",
@@ -38,6 +39,9 @@ class ImageDetailViewModel : ObservableObject {
             }
         }
     }
+    func update(pictureURL:String,description:String,hashtags:String) {
+        self.imageService.updatePicture(pictureUrl: pictureURL, description: description, hashtags: hashtags)
+    }
     
     func applySelectedFilter() {
         guard let loadedImage = self.loadedImage else { return }
@@ -51,9 +55,19 @@ class ImageDetailViewModel : ObservableObject {
                 let context = CIContext()
                 guard let outputCGImage = context.createCGImage(outputCIImage, from: outputCIImage.extent) else { return }
                 self.filteredCgImage = outputCGImage
-                let filteredImage = Image(uiImage: UIImage(cgImage: outputCGImage))
-                DispatchQueue.main.async {
-                    self.image = filteredImage
+                let image = UIImage(cgImage: outputCGImage)
+                if image.imageOrientation == UIImage.Orientation.up {
+                    let filteredImage = Image(uiImage: image)
+                    DispatchQueue.main.async {
+                        self.image = filteredImage
+                    }
+                } else {
+                    let fixedCGImage = outputCGImage.copy()!
+                    let fixedImage = UIImage(cgImage: fixedCGImage, scale: image.scale, orientation: .down)
+                    let filteredImage = Image(uiImage: fixedImage)
+                    DispatchQueue.main.async {
+                        self.image = filteredImage
+                    }
                 }
             } else {
                 DispatchQueue.main.async {

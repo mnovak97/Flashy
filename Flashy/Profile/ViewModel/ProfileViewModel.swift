@@ -27,7 +27,6 @@ class ProfileViewModel: ObservableObject {
             self.imageService.fetchUserImageUrls(userID: userID) { urls in
                 for url in urls {
                     self.imageService.fetchImageSize(imageUrl: url) { size in
-                        print(size)
                         self.totalUsage += size / 1000
                     }
                 }

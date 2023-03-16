@@ -26,13 +26,25 @@ struct BottomNavigationView: View {
                         .fontWeight(.bold)
                         .font(.custom("Futura-MediumItalic", fixedSize: 25))
                     Spacer()
-                    NavigationLink {
-                        ImageUploadView()
-                    } label: {
-                        Image(systemName: "plus")
-                            .font(.title)
+                    if authViewModel.currentUser != nil {
+                        NavigationLink {
+                            ImageUploadView()
+                        } label: {
+                            Image(systemName: "plus")
+                                .font(.title)
+                        }
+                        .padding(.trailing)
+                    } else {
+                        NavigationLink {
+                            ImageUploadView()
+                        } label: {
+                            Image(systemName: "plus")
+                                .font(.title)
+                                .opacity(0)
+                        }
+                        .disabled(true)
+                        .padding(.trailing)
                     }
-                    .padding(.trailing)
                 }
                 Divider()
                     .background(Color.black)

@@ -35,8 +35,8 @@ struct LoginScreenView: View {
                 HStack {
                    
                     Spacer()
-                    NavigationLink {
-                        
+                    Button {
+                        authViewModel.signInAnonymous()
                     } label: {
                         Text("Continue anonymous")
                             .font(.subheadline)
@@ -63,9 +63,9 @@ struct LoginScreenView: View {
                 }
 
                 Button {
-                    print("Signing in with github")
+                    authViewModel.signInWithGitHub()
                 } label: {
-                    CustomSignInButton(imageType: ImageType.systemImage, imageName: "apple.logo", placeholder: "Sign in with Apple ID")
+                    CustomSignInButton(imageType: ImageType.assetImage, imageName: "gitLogo", placeholder: "Sign in with GitHub")
                         .padding(.horizontal, 20)
                 }
                 
@@ -79,7 +79,6 @@ struct LoginScreenView: View {
                 
                 NavigationLink {
                     RegistrationView()
-                        .navigationBarHidden(true)
                 } label: {
                     HStack {
                         Text("Don't have an account?")
