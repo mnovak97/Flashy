@@ -50,6 +50,7 @@
 		5589071829BA0B5800CC7D18 /* ImageDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589071729BA0B5800CC7D18 /* ImageDetailViewModel.swift */; };
 		5589071A29BE3D2000CC7D18 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589071929BE3D2000CC7D18 /* ImageType.swift */; };
 		55D1C76F29C350FF009BBDE8 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C76E29C350FF009BBDE8 /* SearchViewModel.swift */; };
+		55D1C77529C36745009BBDE8 /* SearchThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C77429C36745009BBDE8 /* SearchThumbnailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,6 +93,7 @@
 		5589071729BA0B5800CC7D18 /* ImageDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewModel.swift; sourceTree = "<group>"; };
 		5589071929BE3D2000CC7D18 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 		55D1C76E29C350FF009BBDE8 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		55D1C77429C36745009BBDE8 /* SearchThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchThumbnailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				557E0F81299E800E00BD1FE2 /* CustomShape.swift */,
 				557E0F83299E833200BD1FE2 /* ProgressBarView.swift */,
 				55009FFF29B277D5001AC2B3 /* CustomListItem.swift */,
+				55D1C77429C36745009BBDE8 /* SearchThumbnailView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				5589071829BA0B5800CC7D18 /* ImageDetailViewModel.swift in Sources */,
 				556AD00129530FCC00FAB74E /* LoginScreenView.swift in Sources */,
 				556AD03A2957632400FAB74E /* ImageUploadView.swift in Sources */,
+				55D1C77529C36745009BBDE8 /* SearchThumbnailView.swift in Sources */,
 				556AD03D29576B8000FAB74E /* ImagePicker.swift in Sources */,
 				5500A00029B277D5001AC2B3 /* CustomListItem.swift in Sources */,
 				5589071229B8E3BB00CC7D18 /* ImageSaver.swift in Sources */,

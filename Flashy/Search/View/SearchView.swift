@@ -14,7 +14,33 @@ struct SearchView: View {
             SearchBar(text: $searchVM.searchText)
                 .padding()
             HStack {
-                
+                Spacer()
+                Button {
+                    searchVM.usernameSelected.toggle()
+                    searchVM.hashtagSelected.toggle()
+                } label: {
+                    Text("username")
+                        .foregroundColor(.black)
+                        .fontWeight(.bold)
+                        .frame(width:150,height: 40)
+                        .background(searchVM.usernameSelected ? Color(.systemBlue) : Color(.white))
+                        .cornerRadius(5)
+                        .shadow(color: Color.black.opacity(0.4), radius: 10, x:0.0, y:2)
+                }
+                Button {
+                    searchVM.usernameSelected.toggle()
+                    searchVM.hashtagSelected.toggle()
+                } label: {
+                    Text("hashtag")
+                        .foregroundColor(.black)
+                        .fontWeight(.bold)
+                        .frame(width:150,height: 40)
+                        .background(searchVM.hashtagSelected ? Color(.systemBlue) : Color(.white))
+                        .cornerRadius(5)
+                        .shadow(color: Color.black.opacity(0.4), radius: 10, x:0.0, y:2)
+                    
+                }
+                Spacer()
             }
             ScrollView {
                 LazyVStack {
@@ -22,7 +48,7 @@ struct SearchView: View {
                         NavigationLink {
                             ImageDetailsView(picture: picture)
                         } label: {
-                            ThumbnailView(picture: picture)
+                            SearchThumbnailView(picture: picture)
                                 .foregroundColor(.black)
                         }
                     }
