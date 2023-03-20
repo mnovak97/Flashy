@@ -11,40 +11,31 @@ import SwiftUI
 
 class ProfileViewModel: ObservableObject {
     @Published var totalUsage = 0
-    @Published var packageMaxConsumption = 0
-    @EnvironmentObject var authVM : AuthViewModel
+    @Published var user: User?
+    var userID: String
     let imageService = ImageService()
-    @Published var user: User
-    init(user:User) {
-        self.user = user
-        self.fetchTotalUsage()
-        self.getMaxConsumption()
+    let userService = UserService()
+    
+    init() {
+        self.userID = Auth.auth().currentUser!.uid
+        self.getUser()
+    }
+    
+    func getUser() {
+        self.userService.fetchUser(withUid: userID) { user in
+            self.user = user
+        }
     }
     
     func fetchTotalUsage() {
         totalUsage = 0
-        if let userID = user.id {
-            self.imageService.fetchUserImageUrls(userID: userID) { urls in
-                for url in urls {
-                    self.imageService.fetchImageSize(imageUrl: url) { size in
-                        self.totalUsage += size / 1000
-                    }
+        self.imageService.fetchUserImageUrls(userID: userID) { urls in
+            for url in urls {
+                self.imageService.fetchImageSize(imageUrl: url) { size in
+                    self.totalUsage += 1
                 }
             }
         }
     }
-    
-    func getMaxConsumption() {
-        if let package = user.packageType.components(separatedBy: " ").first {
-            if package == "GOLD" {
-                self.packageMaxConsumption = 50000
-            } else if package == "PRO" {
-                self.packageMaxConsumption = 25000
-            } else if package == "BASIC" {
-                self.packageMaxConsumption = 10000
-            }
-        }
-    }
-    
     
 }

@@ -60,7 +60,7 @@ struct BottomNavigationView: View {
                             Image(systemName: "magnifyingglass")
                         }
                     if let user = authViewModel.currentUser {
-                        ProfileView(user: user)
+                        ProfileView()
                             .tabItem {
                                 Image(systemName: "person.crop.circle")
                             }

@@ -51,6 +51,7 @@
 		5589071A29BE3D2000CC7D18 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5589071929BE3D2000CC7D18 /* ImageType.swift */; };
 		55D1C76F29C350FF009BBDE8 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C76E29C350FF009BBDE8 /* SearchViewModel.swift */; };
 		55D1C77529C36745009BBDE8 /* SearchThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C77429C36745009BBDE8 /* SearchThumbnailView.swift */; };
+		55D1C77729C8872A009BBDE8 /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C77629C8872A009BBDE8 /* ProfileEditViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		5589071929BE3D2000CC7D18 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 		55D1C76E29C350FF009BBDE8 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		55D1C77429C36745009BBDE8 /* SearchThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchThumbnailView.swift; sourceTree = "<group>"; };
+		55D1C77629C8872A009BBDE8 /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				557E0F7D299E6A4900BD1FE2 /* ProfileViewModel.swift */,
+				55D1C77629C8872A009BBDE8 /* ProfileEditViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				556AD03829575F5F00FAB74E /* ImageUploader.swift in Sources */,
 				557E0F672994FC5700BD1FE2 /* UserService.swift in Sources */,
 				556AD0332955BABF00FAB74E /* User.swift in Sources */,
+				55D1C77729C8872A009BBDE8 /* ProfileEditViewModel.swift in Sources */,
 				556AD02A2954E9AC00FAB74E /* ProfileView.swift in Sources */,
 				556AD047295F518600FAB74E /* ImageUploadViewModel.swift in Sources */,
 				557E0F84299E833200BD1FE2 /* ProgressBarView.swift in Sources */,

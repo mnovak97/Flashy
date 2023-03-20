@@ -14,6 +14,7 @@ class User: Identifiable, Decodable {
     let email: String
     let password: String
     let username: String
+    let packageMaxConsumption: Int
     let packageType: String
     var isAdmin: Bool? = false
     let consumption: Float

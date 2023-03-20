@@ -12,6 +12,7 @@ struct ProfileEditView: View {
     @State private var text: String = ""
     @State private var oldPassword: String = ""
     @State private var selectedPackage: String = ""
+    @StateObject private var viewModel = ProfileEditViewModel()
     @EnvironmentObject var authVM : AuthViewModel
     var body: some View {
         switch editType {
@@ -63,7 +64,9 @@ struct ProfileEditView: View {
                 HStack {
                     Spacer()
                     Button {
-                        print("Updated ")
+                        if let userID = authVM.userSession?.uid {
+                            viewModel.updateEmail(uid: userID, newEmail: text)
+                        }
                     } label: {
                         Text("Update")
                             .font(.headline)
@@ -88,19 +91,19 @@ struct ProfileEditView: View {
                     Image(systemName: "externaldrive.badge.person.crop")
                     Menu {
                         Button {
-                            selectedPackage = "GOLD 14.99$ 50MB"
+                            selectedPackage = "GOLD 14.99$ 50 Pictures"
                         } label: {
-                            Text("GOLD 14.99$ 50MB")
+                            Text("GOLD 14.99$ 50 Pictures")
                         }
                         Button {
-                            selectedPackage = "PRO 9.99$ 25MB"
+                            selectedPackage = "PRO 9.99$ 25 Pictures"
                         } label: {
-                            Text("PRO 9.99$ 25MB")
+                            Text("PRO 9.99$ 25 Pictures")
                         }
                         Button {
-                            selectedPackage = "BASIC 4.99$ 10MB"
+                            selectedPackage = "BASIC 4.99$ 10 Pictures"
                         } label: {
-                            Text("BASIC 4.99$ 10MB")
+                            Text("BASIC 4.99$ 10 Pictures")
                         }
                     } label: {
                         if let user = authVM.currentUser {
@@ -120,7 +123,10 @@ struct ProfileEditView: View {
                 HStack {
                     Spacer()
                     Button {
-                        print("Updated ")
+                        if let userID = authVM.userSession?.uid {
+                            viewModel.updatePackagePlan(uid: userID, packagePlan: selectedPackage, consumption: getMaxConsumption())
+                            authVM.userUpdated = true
+                        }
                     } label: {
                         Text("Update")
                             .font(.headline)
@@ -138,6 +144,19 @@ struct ProfileEditView: View {
             }
             .padding(32)
         }
+    }
+    func getMaxConsumption() -> Int {
+        var consumption = 0
+            if let package = selectedPackage.components(separatedBy: " ").first {
+                if package == "GOLD" {
+                    consumption = 50
+                } else if package == "PRO" {
+                    consumption = 25
+                } else if package == "BASIC" {
+                    consumption = 10
+                }
+            }
+        return consumption
     }
 }
 

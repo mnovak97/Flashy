@@ -33,19 +33,19 @@ struct RegistrationView: View {
                 
                 Menu {
                     Button {
-                        optionSelected = "GOLD 14.99$ 50MB"
+                        optionSelected = "GOLD 14.99$ 50 Pictures"
                     } label: {
-                        Text("GOLD 14.99$ 50MB")
+                        Text("GOLD 14.99$ 50 Pictures")
                     }
                     Button {
-                        optionSelected = "PRO 9.99$ 25MB"
+                        optionSelected = "PRO 9.99$ 25 Pictures"
                     } label: {
-                        Text("PRO 9.99$ 25MB")
+                        Text("PRO 9.99$ 25 Pictures")
                     }
                     Button {
-                        optionSelected = "BASIC 4.99$ 10MB"
+                        optionSelected = "BASIC 4.99$ 10 Pictures"
                     } label: {
-                        Text("BASIC 4.99$ 10MB")
+                        Text("BASIC 4.99$ 10 Pictures")
                     }
                 } label: {
                     Text(optionSelected)
@@ -56,7 +56,7 @@ struct RegistrationView: View {
             }
             
             Button {
-                authViewModel.signUp(email: email,username: username, password: password, package: optionSelected)
+                authViewModel.signUp(email: email,username: username, password: password, package: optionSelected,packageMaxConsumption: getMaxConsumption())
             } label: {
                 Text("Sign up")
                     .font(.headline)
@@ -73,6 +73,20 @@ struct RegistrationView: View {
            
             Spacer()
         }
+    }
+    
+    func getMaxConsumption() -> Int {
+        var consumption = 0
+            if let package = optionSelected.components(separatedBy: " ").first {
+                if package == "GOLD" {
+                    consumption = 50
+                } else if package == "PRO" {
+                    consumption = 25
+                } else if package == "BASIC" {
+                    consumption = 10
+                }
+            }
+        return consumption
     }
 }
 

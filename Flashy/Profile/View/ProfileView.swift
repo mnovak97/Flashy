@@ -8,17 +8,16 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @ObservedObject var viewModel: ProfileViewModel
-    
-    init(user: User) {
-        self.viewModel = ProfileViewModel(user: user)
-    }
+    @ObservedObject var viewModel = ProfileViewModel()
+    @EnvironmentObject var authVM : AuthViewModel
     var body: some View {
         VStack {
             VStack {
-                Text(viewModel.user.username)
-                    .fontWeight(.bold)
-                    .font(.custom("Futura-MediumItalic", fixedSize: 25))
+                if viewModel.user != nil {
+                    Text(viewModel.user!.username)
+                        .fontWeight(.bold)
+                        .font(.custom("Futura-MediumItalic", fixedSize: 25))
+                }
             }
             .frame(
                   minWidth: 0,
@@ -32,20 +31,20 @@ struct ProfileView: View {
                     Text("Package type:")
                         .fontWeight(.bold)
                         .font(.custom("Futura-MediumItalic", fixedSize: 18))
-                    Text(viewModel.user.packageType)
-                    
+                    if viewModel.user != nil {
+                        Text(viewModel.user!.packageType)
+                    }
                 }
                 
                 HStack{
                     Text("Usage")
                         .fontWeight(.bold)
                         .font(.custom("Futura-MediumItalic", fixedSize: 18))
-                    
-                    ProgressBarView(width: 150,height: 20,percent: CGFloat(viewModel.totalUsage),packageSpace: CGFloat(viewModel.packageMaxConsumption),color1: Color(.systemBlue),color2: Color(.blue))
-                        .animation(.spring())
-                    let totalUsage = Double(viewModel.totalUsage / 1000)
-                    let totalUsageString = String(format: "%.1f", totalUsage)
-                    Text("\(totalUsageString)/\(viewModel.packageMaxConsumption / 1000) MB")
+                    if viewModel.user != nil {
+                        ProgressBarView(width: 150,height: 20,percent: CGFloat(viewModel.totalUsage),packageSpace: CGFloat(viewModel.user!.packageMaxConsumption),color1: Color(.systemBlue),color2: Color(.blue))
+                            .animation(.spring())
+                        Text("\(viewModel.totalUsage)/\(viewModel.user!.packageMaxConsumption)")
+                    }
                 }
                 
                 .padding(.top,20)
@@ -86,6 +85,11 @@ struct ProfileView: View {
         }
         .onAppear{
             self.viewModel.fetchTotalUsage()
+            if authVM.userUpdated {
+                self.viewModel.getUser()
+                self.authVM.userUpdated = false
+                self.viewModel.fetchTotalUsage()
+            }
         }
     }
 }

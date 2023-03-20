@@ -12,6 +12,7 @@ import SwiftUI
 class AuthViewModel : ObservableObject {
     @Published var userSession : FirebaseAuth.User?
     @Published var currentUser: User?
+    @Published var userUpdated = false
     
     private let service = UserService()
     
@@ -90,6 +91,7 @@ class AuthViewModel : ObservableObject {
             let data = ["email": email,
                         "username": username,
                         "password":"",
+                        "packageMaxConsumption": 10,
                         "packageType": "BASIC 4.99$ 10MB",
                         "isAdmin":false,
                         "consumption":0,
@@ -104,7 +106,7 @@ class AuthViewModel : ObservableObject {
         }
     }
     
-    func signUp(email: String,username: String, password: String, package: String) {
+    func signUp(email: String,username: String, password: String, package: String,packageMaxConsumption:Int) {
         Auth.auth().createUser(withEmail: email, password: password) { result,error in
             if let error = error {
                 print(error.localizedDescription)
@@ -117,6 +119,7 @@ class AuthViewModel : ObservableObject {
             let data  = ["email": email,
                          "username": username.lowercased(),
                          "password":password,
+                         "packageMaxConsumption": packageMaxConsumption,
                          "packageType": package,
                          "isAdmin": false,
                          "consumption": 0,
