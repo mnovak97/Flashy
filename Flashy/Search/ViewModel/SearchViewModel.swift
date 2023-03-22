@@ -7,7 +7,7 @@
 
 import Foundation
 class SearchViewModel : ObservableObject {
-    @Published var pictures =  [Picture]()
+    @Published var pictures = [Picture]()
     @Published var searchText = ""
     @Published var usernameSelected = true
     @Published var hashtagSelected = false

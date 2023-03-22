@@ -52,6 +52,10 @@
 		55D1C76F29C350FF009BBDE8 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C76E29C350FF009BBDE8 /* SearchViewModel.swift */; };
 		55D1C77529C36745009BBDE8 /* SearchThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C77429C36745009BBDE8 /* SearchThumbnailView.swift */; };
 		55D1C77729C8872A009BBDE8 /* ProfileEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C77629C8872A009BBDE8 /* ProfileEditViewModel.swift */; };
+		55D1C77C29C9D25E009BBDE8 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C77B29C9D25E009BBDE8 /* AdminView.swift */; };
+		55D1C77E29C9D28A009BBDE8 /* AdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C77D29C9D28A009BBDE8 /* AdminViewModel.swift */; };
+		55D1C78029C9D558009BBDE8 /* UsersThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C77F29C9D558009BBDE8 /* UsersThumbnail.swift */; };
+		55D1C78229C9DD95009BBDE8 /* UpdatePackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C78129C9DD95009BBDE8 /* UpdatePackageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +100,10 @@
 		55D1C76E29C350FF009BBDE8 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		55D1C77429C36745009BBDE8 /* SearchThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchThumbnailView.swift; sourceTree = "<group>"; };
 		55D1C77629C8872A009BBDE8 /* ProfileEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewModel.swift; sourceTree = "<group>"; };
+		55D1C77B29C9D25E009BBDE8 /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
+		55D1C77D29C9D28A009BBDE8 /* AdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewModel.swift; sourceTree = "<group>"; };
+		55D1C77F29C9D558009BBDE8 /* UsersThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersThumbnail.swift; sourceTree = "<group>"; };
+		55D1C78129C9DD95009BBDE8 /* UpdatePackageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePackageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +142,7 @@
 		556ACFF029530F0E00FAB74E /* Flashy */ = {
 			isa = PBXGroup;
 			children = (
+				55D1C77829C9D232009BBDE8 /* Admin */,
 				557E0F75299AE5B000BD1FE2 /* Search */,
 				557E0F72299AE59B00BD1FE2 /* Profile */,
 				557E0F6F299AE56900BD1FE2 /* ImageDetail */,
@@ -362,6 +371,33 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		55D1C77829C9D232009BBDE8 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				55D1C77A29C9D24A009BBDE8 /* ViewModel */,
+				55D1C77929C9D243009BBDE8 /* View */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		55D1C77929C9D243009BBDE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				55D1C77B29C9D25E009BBDE8 /* AdminView.swift */,
+				55D1C77F29C9D558009BBDE8 /* UsersThumbnail.swift */,
+				55D1C78129C9DD95009BBDE8 /* UpdatePackageView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		55D1C77A29C9D24A009BBDE8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				55D1C77D29C9D28A009BBDE8 /* AdminViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -458,12 +494,14 @@
 				556AD02A2954E9AC00FAB74E /* ProfileView.swift in Sources */,
 				556AD047295F518600FAB74E /* ImageUploadViewModel.swift in Sources */,
 				557E0F84299E833200BD1FE2 /* ProgressBarView.swift in Sources */,
+				55D1C78229C9DD95009BBDE8 /* UpdatePackageView.swift in Sources */,
 				556AD02C2954F63C00FAB74E /* ThumbnailView.swift in Sources */,
 				556AD0312955B9FD00FAB74E /* Picture.swift in Sources */,
 				557E0F82299E800E00BD1FE2 /* CustomShape.swift in Sources */,
 				55D1C76F29C350FF009BBDE8 /* SearchViewModel.swift in Sources */,
 				556ACFF429530F0E00FAB74E /* ContentView.swift in Sources */,
 				556AD02E2954FCAD00FAB74E /* SearchBar.swift in Sources */,
+				55D1C77E29C9D28A009BBDE8 /* AdminViewModel.swift in Sources */,
 				5589071A29BE3D2000CC7D18 /* ImageType.swift in Sources */,
 				557E0F7E299E6A4900BD1FE2 /* ProfileViewModel.swift in Sources */,
 				556AD00A2953316C00FAB74E /* RegistrationView.swift in Sources */,
@@ -473,10 +511,12 @@
 				557E0F7C299D58F400BD1FE2 /* ImageService.swift in Sources */,
 				556AD00C29539CA300FAB74E /* CustomTextFieldRegister.swift in Sources */,
 				5589071829BA0B5800CC7D18 /* ImageDetailViewModel.swift in Sources */,
+				55D1C77C29C9D25E009BBDE8 /* AdminView.swift in Sources */,
 				556AD00129530FCC00FAB74E /* LoginScreenView.swift in Sources */,
 				556AD03A2957632400FAB74E /* ImageUploadView.swift in Sources */,
 				55D1C77529C36745009BBDE8 /* SearchThumbnailView.swift in Sources */,
 				556AD03D29576B8000FAB74E /* ImagePicker.swift in Sources */,
+				55D1C78029C9D558009BBDE8 /* UsersThumbnail.swift in Sources */,
 				5500A00029B277D5001AC2B3 /* CustomListItem.swift in Sources */,
 				5589071229B8E3BB00CC7D18 /* ImageSaver.swift in Sources */,
 				556ACFF229530F0E00FAB74E /* FlashyApp.swift in Sources */,

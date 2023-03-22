@@ -17,4 +17,8 @@ class ProfileEditViewModel : ObservableObject {
     func updatePackagePlan(uid: String, packagePlan: String, consumption: Int) {
         self.userService.updatePackagePlan(withUid: uid, packagePlan: packagePlan, consumption:consumption)
     }
+    
+    func updatePassword(uid: String, newPassword:String) {
+        self.userService.updateUserPassword(withUid: uid, newPassword: newPassword)
+    }
 }

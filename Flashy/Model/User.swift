@@ -18,4 +18,15 @@ class User: Identifiable, Decodable {
     let packageType: String
     var isAdmin: Bool? = false
     let consumption: Float
+    
+    
+    init(documentID: String, email:String, password: String, username:String, consumptionMax: Int, packageType: String, consumption: Float) {
+        self.id = documentID
+        self.email = email
+        self.password = password
+        self.username = username
+        self.packageMaxConsumption = consumptionMax
+        self.packageType = packageType
+        self.consumption = consumption
+    }
 }

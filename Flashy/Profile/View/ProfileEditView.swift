@@ -18,11 +18,6 @@ struct ProfileEditView: View {
         switch editType {
         case .password:
             VStack (alignment:.leading) {
-                HStack {
-                    Image(systemName: "lock")
-                    TextField("Enter current password", text: $oldPassword)
-                }
-                Divider()
                 Text("New password")
                     .font(.title3)
                 HStack {
@@ -30,11 +25,12 @@ struct ProfileEditView: View {
                     TextField("Enter new password", text: $text)
                 }
                 Divider()
-                
                 HStack {
                     Spacer()
                     Button {
-                        print("Updated ")
+                        if let userID = authVM.userSession?.uid {
+                            viewModel.updatePassword(uid: userID, newPassword: text)
+                        }
                     } label: {
                         Text("Update")
                             .font(.headline)
@@ -162,7 +158,7 @@ struct ProfileEditView: View {
 
 struct ProfileEditView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileEditView(editType: ProfileEdit.packageType)
+        ProfileEditView(editType: ProfileEdit.password)
             .environmentObject(AuthViewModel())
     }
 }

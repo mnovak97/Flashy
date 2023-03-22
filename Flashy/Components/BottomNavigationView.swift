@@ -65,6 +65,16 @@ struct BottomNavigationView: View {
                                 Image(systemName: "person.crop.circle")
                             }
                     }
+                    if let user = authViewModel.currentUser {
+                        if let userAdmin = user.isAdmin {
+                            if userAdmin {
+                                AdminView()
+                                    .tabItem {
+                                        Image(systemName: "person.badge.shield.checkmark")
+                                    }
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -54,6 +54,34 @@ struct UserService {
                 completion(user.packageMaxConsumption)
             }
     }
+    func updateUserPassword(withUid uid: String, newPassword: String) {
+        let curretnUser = Auth.auth().currentUser
+        curretnUser?.updatePassword(to: newPassword) { error in
+            if let error = error {
+                print("Error occured: \(error.localizedDescription)")
+            } else {
+                print("Password was changed")
+            }
+        }
+        
+        let docRef = Firestore.firestore().collection("users").document(uid)
+        docRef.getDocument { querySnapshot, error in
+            if let error = error {
+                print("Error getting document: \(error.localizedDescription)")
+            } else if (querySnapshot?.exists) != nil {
+                docRef.updateData(["password": newPassword]) { (error) in
+                    if let error = error {
+                        print("Error updating document: \(error.localizedDescription)")
+                    } else {
+                        print("Document updated successfully.")
+                    }
+                }
+            } else {
+                print("No matching documents found.")
+            }
+        }
+    }
+    
     
     func updateUserEmail(withUid uid: String,newEmail:String) {
         let currentUser = Auth.auth().currentUser
