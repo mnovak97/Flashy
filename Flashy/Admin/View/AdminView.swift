@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AdminView: View {
     @ObservedObject var viewModel = AdminViewModel()
-    
+    @EnvironmentObject var authVM : AuthViewModel
     var body: some View {
         VStack {
             SearchBar(text: $viewModel.searchText)
@@ -26,6 +26,11 @@ struct AdminView: View {
                         }
                     }
                 }
+                .onAppear {
+                    if authVM.userUpdated {
+                        viewModel.fetchUsers()
+                    }
+                }
             }
         }
     }
@@ -33,6 +38,6 @@ struct AdminView: View {
 
 struct AdminView_Previews: PreviewProvider {
     static var previews: some View {
-        AdminView()
+        AdminView().environmentObject(AuthViewModel())
     }
 }

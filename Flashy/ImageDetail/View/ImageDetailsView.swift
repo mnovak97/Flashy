@@ -29,6 +29,7 @@ struct ImageDetailsView: View {
                     if authView.userSession?.uid == picture.userID {
                         Button {
                             viewModel.update(pictureURL: picture.imageUrl, description: description, hashtags: hashtags)
+                            authView.pictureUpdated = true
                         } label: {
                             Text("Update")
                         }

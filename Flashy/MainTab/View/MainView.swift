@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @ObservedObject var viewModel = MainTabViewModel()
+    @EnvironmentObject var authVM : AuthViewModel
     var body: some View {
         NavigationView {
             ScrollView {
@@ -21,6 +22,11 @@ struct MainView: View {
                                 .foregroundColor(.black)
                         }
                     }
+                }.onAppear {
+                    if authVM.pictureUpdated {
+                        viewModel.fetchPictures()
+                        authVM.pictureUpdated = false
+                    }
                 }
             }
         }
@@ -29,6 +35,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView().environmentObject(AuthViewModel())
     }
 }

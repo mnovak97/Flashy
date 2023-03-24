@@ -56,6 +56,7 @@
 		55D1C77E29C9D28A009BBDE8 /* AdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C77D29C9D28A009BBDE8 /* AdminViewModel.swift */; };
 		55D1C78029C9D558009BBDE8 /* UsersThumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C77F29C9D558009BBDE8 /* UsersThumbnail.swift */; };
 		55D1C78229C9DD95009BBDE8 /* UpdatePackageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C78129C9DD95009BBDE8 /* UpdatePackageView.swift */; };
+		55D1C78429CDE48D009BBDE8 /* UpdatePackageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D1C78329CDE48D009BBDE8 /* UpdatePackageViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,7 @@
 		55D1C77D29C9D28A009BBDE8 /* AdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewModel.swift; sourceTree = "<group>"; };
 		55D1C77F29C9D558009BBDE8 /* UsersThumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersThumbnail.swift; sourceTree = "<group>"; };
 		55D1C78129C9DD95009BBDE8 /* UpdatePackageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePackageView.swift; sourceTree = "<group>"; };
+		55D1C78329CDE48D009BBDE8 /* UpdatePackageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePackageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -394,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				55D1C77D29C9D28A009BBDE8 /* AdminViewModel.swift */,
+				55D1C78329CDE48D009BBDE8 /* UpdatePackageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				556AD02C2954F63C00FAB74E /* ThumbnailView.swift in Sources */,
 				556AD0312955B9FD00FAB74E /* Picture.swift in Sources */,
 				557E0F82299E800E00BD1FE2 /* CustomShape.swift in Sources */,
+				55D1C78429CDE48D009BBDE8 /* UpdatePackageViewModel.swift in Sources */,
 				55D1C76F29C350FF009BBDE8 /* SearchViewModel.swift in Sources */,
 				556ACFF429530F0E00FAB74E /* ContentView.swift in Sources */,
 				556AD02E2954FCAD00FAB74E /* SearchBar.swift in Sources */,

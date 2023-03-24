@@ -23,13 +23,28 @@ struct UserService {
     }
     
     func fetchUsers(completion: @escaping([User]) -> Void) {
-            Firestore.firestore().collection("users")
-                .getDocuments { snapshot, _ in
-                    guard let documents = snapshot?.documents else { return }
-                    let users = documents.compactMap({try? $0.data(as: User.self) })
-                    
-                    completion(users)
+        var users = [User]()
+        Firestore.firestore().collection("users")
+            .addSnapshotListener { querySnapshot, error in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
             }
+                users = documents.map({ (queryDocumentSnapshot) -> User in
+                    let data = queryDocumentSnapshot.data()
+                    let documentID = queryDocumentSnapshot.documentID
+                    let email = data["email"] as? String ?? ""
+                    let isAdmin = data["isAdmin"] as? Bool ?? false
+                    let packageConsumption = data["packageMaxConsumption"] as? Int ?? 0
+                    let packageType = data["packageType"] as? String ?? ""
+                    let password = data["password"] as? String ?? ""
+                    let username = data["username"] as? String ?? ""
+                    let consumption = data["consumption"] as? Float ?? 0.0
+                    
+                    return User(documentID: documentID, email: email, password: password, username: username, consumptionMax: packageConsumption, packageType: packageType, consumption: consumption)
+                })
+                completion(users)
+        }
     }
     
     func fetchUser(withUid uid: String, completion: @escaping(User) -> Void) {

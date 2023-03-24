@@ -49,20 +49,26 @@ struct ProfileView: View {
                 
                 .padding(.top,20)
                 .padding(.bottom,20)
-                Divider()
-                NavigationLink {
-                    ProfileEditView(editType: ProfileEdit.password)
-                } label: {
-                    CustomListItem(imageName: "lock", text: "Change password")
+                if let user = authVM.userSession {
+                    if let provider = user.providerData.first {
+                        if provider.providerID != "google.com" {
+                            Divider()
+                            NavigationLink {
+                                ProfileEditView(editType: ProfileEdit.password)
+                            } label: {
+                                CustomListItem(imageName: "lock", text: "Change password")
+                            }
+                            .foregroundColor(.black)
+                            Divider()
+                            NavigationLink {
+                                ProfileEditView(editType: ProfileEdit.email)
+                            } label: {
+                                CustomListItem(imageName: "envelope", text: "Change e-mail")
+                            }
+                            .foregroundColor(.black)
+                        }
+                    }
                 }
-                .foregroundColor(.black)
-                Divider()
-                NavigationLink {
-                    ProfileEditView(editType: ProfileEdit.email)
-                } label: {
-                    CustomListItem(imageName: "envelope", text: "Change e-mail")
-                }
-                .foregroundColor(.black)
                 Divider()
                 NavigationLink {
                     ProfileEditView(editType: ProfileEdit.packageType)

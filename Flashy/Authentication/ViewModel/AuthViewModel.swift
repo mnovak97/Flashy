@@ -13,6 +13,8 @@ class AuthViewModel : ObservableObject {
     @Published var userSession : FirebaseAuth.User?
     @Published var currentUser: User?
     @Published var userUpdated = false
+    @Published var pictureUpdated = false
+    
     
     private let service = UserService()
     
